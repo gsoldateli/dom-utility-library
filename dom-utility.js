@@ -38,12 +38,20 @@
     	return collection;
     }
 
+    function insertAfter(newNode,refNode) {
+        if(refNode && refNode.nextElementSibiling) {
+            refNode.parentElement.insertBefore(newNode,refNode.nextElementSibiling);
+        } else {
+            refNode.parentElement.appendChild(newNode);
+        }
+    }
+
     window.$DU = {
     	getAncestorBySelector: getAncestorBySelector,
-    	getSiblingsBySelector: getSiblingsBySelector
+    	getSiblingsBySelector: getSiblingsBySelector,
+        insertAfter: insertAfter
     };
 
 }(window));
 
 
-console.log($DU.getAncestorBySelector(document.querySelector('.intro'), 'body'));
