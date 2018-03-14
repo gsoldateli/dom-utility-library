@@ -44,12 +44,29 @@
         } else {
             refNode.parentElement.appendChild(newNode);
         }
+
+        return newNode;
+    }
+
+    function removeAll(cssSelector) {
+        var elements = document.querySelectorAll(cssSelector);
+        var listRemovedElements = [];
+
+        for(var i=0; i<elements.length; i++) {
+            var element = elements[i];
+            listRemovedElements.push(element);
+
+            element.remove();
+        }
+
+        return listRemovedElements;
     }
 
     window.$DU = {
     	getAncestorBySelector: getAncestorBySelector,
     	getSiblingsBySelector: getSiblingsBySelector,
-        insertAfter: insertAfter
+        insertAfter: insertAfter,
+        removeAll: removeAll
     };
 
 }(window));
