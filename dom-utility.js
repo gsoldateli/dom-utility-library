@@ -48,6 +48,35 @@
         return newNode;
     }
 
+    function swapElements(elementA, elementB) {
+        var result=false;
+        var cloneA = elementA.cloneNode(true);
+        var cloneB = elementB.cloneNode(true);
+
+        try {
+            //Insert element placeholders into dom
+            elementA.parentElement.insertBefore(cloneA,elementA);
+            elementB.parentElement.insertBefore(cloneB,elementB);
+
+            //Move the real elements
+            cloneB.parentElement.insertBefore(elementA,cloneB);
+            cloneA.parentElement.insertBefore(elementB,cloneA);
+            
+            result = true;
+        }
+        catch(err) {
+            console.log(err.message);
+            result = false;
+        }
+
+
+        //Remove placeholders;
+        cloneA.remove();
+        cloneB.remove();
+
+        return result;
+    }
+
     function removeAll(cssSelector) {
         var elements = document.querySelectorAll(cssSelector);
         var listRemovedElements = [];
@@ -66,6 +95,7 @@
     	getAncestorBySelector: getAncestorBySelector,
     	getSiblingsBySelector: getSiblingsBySelector,
         insertAfter: insertAfter,
+        swapElements: swapElements,
         removeAll: removeAll
     };
 
